@@ -80,3 +80,12 @@ let productosGamer = [
     stock: 2,
   },
 ];
+
+let contenedor = document.getElementById("contenedorProductos");
+
+productosGamer.forEach((producto) => {
+  let tarjeta = document.createElement("div");
+  tarjeta.innerHTML = `<h3> ${producto.nombre} </h3>`;
+
+  contenedor.appendChild(tarjeta);
+});
