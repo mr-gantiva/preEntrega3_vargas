@@ -10,20 +10,34 @@ body {
 
 .contenedor-productos {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 .contenedor-productos .card-productos {
   max-width: 250px;
+  max-height: 395px;
+  position: relative;
   border: 2px solid #ededed;
   padding: 5px;
   border-radius: 5px;
 }
 .contenedor-productos .card-productos img {
   width: 100%;
+  width: 204px;
+  height: 204px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .contenedor-productos .disponibilidad-producto {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: end;
+  position: absolute;
+  top: 190px;
+  right: 20px;
   font-size: 0.661rem;
 }/*# sourceMappingURL=style.css.map */

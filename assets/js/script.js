@@ -6,6 +6,7 @@ let productosGamer = [
     manufacturer: "Logitech",
     price: 49.99,
     stock: 2,
+    rutaImagen: "logitech-g502.webp",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ let productosGamer = [
     manufacturer: "Razer",
     price: 169.99,
     stock: 2,
+    rutaImagen: "razer-blackWidow-elite.webp",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ let productosGamer = [
     manufacturer: "SteelSeries",
     price: 179.99,
     stock: 2,
+    rutaImagen: "steelSeries-arctis-pro.webp",
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ let productosGamer = [
     manufacturer: "ASUS",
     price: 699.99,
     stock: 2,
+    rutaImagen: "asus-rog-strix-geforce-rtx-3080.webp",
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ let productosGamer = [
     manufacturer: "HyperX",
     price: 109.99,
     stock: 2,
+    rutaImagen: "hyperx-alloy-origins.webp",
   },
   {
     id: 6,
@@ -46,6 +51,7 @@ let productosGamer = [
     manufacturer: "Corsair",
     price: 159.99,
     stock: 2,
+    rutaImagen: "corsair-K70-rgb-mk-2.webp",
   },
   {
     id: 7,
@@ -54,6 +60,7 @@ let productosGamer = [
     manufacturer: "LG",
     price: 499.99,
     stock: 2,
+    rutaImagen: "lg-27GL850-B.webp",
   },
   {
     id: 8,
@@ -62,6 +69,7 @@ let productosGamer = [
     manufacturer: "Sony",
     price: 499.99,
     stock: 2,
+    rutaImagen: "sony-playStation-5.webp",
   },
   {
     id: 9,
@@ -70,6 +78,7 @@ let productosGamer = [
     manufacturer: "Microsoft",
     price: 499.99,
     stock: 2,
+    rutaImagen: "microsoft-xbox-series-x.webp",
   },
   {
     id: 10,
@@ -78,6 +87,7 @@ let productosGamer = [
     manufacturer: "Logitech",
     price: 149.99,
     stock: 2,
+    rutaImagen: "logitech-g-pro-x-superlight.webp",
   },
 ];
 
@@ -85,7 +95,34 @@ let contenedor = document.getElementById("contenedorProductos");
 
 productosGamer.forEach((producto) => {
   let tarjeta = document.createElement("div");
-  tarjeta.innerHTML = `<h3> ${producto.nombre} </h3>`;
+  tarjeta.innerHTML = `
+  <div class="card-productos">
+        <div class="img-producto">
+            <img src="assets/img/${producto.rutaImagen}" alt="">
+        </div>
+        <div class="descripcion-producto">
+            <div class="disponibilidad-producto">
+                <span>ENVIO RAPIDO</span>
+                <span>DISPONIBLE EN TIENDA</span>
+            </div>
+            <div class="fabricante-producto">
+                <span>${producto.manufacturer}</span>
+            </div>
+            <div class="titulo-producto">
+                <span>${producto.nombre}</span>
+            </div>
+            <div class="categoria-producto">
+                <p>${producto.category}</p>
+            </div>
+            <div class="precio-producto">
+                <p>${producto.price}</p>
+            </div>
+            <div class="stock-producto">
+                <p>${producto.stock}</p>
+            </div>
+        </div>
+    </div>
+  `;
 
   contenedor.appendChild(tarjeta);
 });
