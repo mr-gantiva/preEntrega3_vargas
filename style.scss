@@ -1,28 +1,45 @@
+:root {
+  --bg-ppal: #f5f5f5;
+  --bg-cards: #ffffff;
+  --texto-verde: #056152;
+  --bg-verde: #ebfaf7;
+  --texto-purpura:#981b98;
+  --bg-purpura: #fbe9fb;
+  --color-primario: #441b98;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg-ppal) !important;
 }
 
 .contenedor-productos {
-  width: 100%;
   display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 50px 0;
   .card-productos {
     max-width: 250px;
     max-height: 395px;
+    min-width: 220px;
     position: relative;
-    border: 2px solid #ededed;
+    // border: 2px solid #ededed;
     padding: 5px;
     border-radius: 5px;
+    background: var(--bg-cards);
+    .img-producto {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    }
     img {
       width: 100%;
       width: 204px;
@@ -37,7 +54,49 @@ body {
     align-items: end;
     position: absolute;
     top: 190px;
-    right: 20px;
+    right: 8px;
     font-size: 0.661rem;
+    .tag-tipo-envio {
+      background: var(--bg-verde);
+      border-radius: 4px;
+      margin-bottom: 5px;
+      span {
+        font-weight: 700;
+        padding: 2px 4px;
+        color: var(--texto-verde);
+        text-transform: uppercase;
+      }
+    }
+    .tag-disponibilidad {
+      background: var(--bg-purpura);
+      border-radius: 4px;
+      span {
+        font-weight: 700;
+        padding: 2px 4px;
+        color: var(--texto-purpura);
+      }
+    }
+  }
+  .fabricante-producto {
+    margin-top: 20px;
+    span {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+  .fabricante-producto,.titulo-producto,.categoria-producto {
+    span, p {
+      font-size: .871rem;
+      }
+  }
+  .precio-producto{
+    padding: 10px 0;
+    p {
+      font-size: 1.148rem;
+      color: var(--color-primario);
+      font-weight: 550;
+      letter-spacing: 0;
+      line-height: 125%;
+    }
   }
 }

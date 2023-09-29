@@ -5,6 +5,7 @@ let productosGamer = [
     category: "Gaming Mouse",
     manufacturer: "Logitech",
     price: 49.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "logitech-g502.webp",
   },
@@ -14,6 +15,7 @@ let productosGamer = [
     category: "Gaming Keyboard",
     manufacturer: "Razer",
     price: 169.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "razer-blackWidow-elite.webp",
   },
@@ -23,6 +25,7 @@ let productosGamer = [
     category: "Gaming Headset",
     manufacturer: "SteelSeries",
     price: 179.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "steelSeries-arctis-pro.webp",
   },
@@ -32,6 +35,7 @@ let productosGamer = [
     category: "Graphics Card",
     manufacturer: "ASUS",
     price: 699.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "asus-rog-strix-geforce-rtx-3080.webp",
   },
@@ -41,6 +45,7 @@ let productosGamer = [
     category: "Gaming Keyboard",
     manufacturer: "HyperX",
     price: 109.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "hyperx-alloy-origins.webp",
   },
@@ -50,6 +55,7 @@ let productosGamer = [
     category: "Gaming Keyboard",
     manufacturer: "Corsair",
     price: 159.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "corsair-K70-rgb-mk-2.webp",
   },
@@ -59,6 +65,7 @@ let productosGamer = [
     category: "Gaming Monitor",
     manufacturer: "LG",
     price: 499.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "lg-27GL850-B.webp",
   },
@@ -68,6 +75,7 @@ let productosGamer = [
     category: "Gaming Console",
     manufacturer: "Sony",
     price: 499.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "sony-playStation-5.webp",
   },
@@ -77,6 +85,7 @@ let productosGamer = [
     category: "Gaming Console",
     manufacturer: "Microsoft",
     price: 499.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "microsoft-xbox-series-x.webp",
   },
@@ -86,6 +95,7 @@ let productosGamer = [
     category: "Gaming Mouse",
     manufacturer: "Logitech",
     price: 149.99,
+    envio: "envio rapido",
     stock: 2,
     rutaImagen: "logitech-g-pro-x-superlight.webp",
   },
@@ -102,8 +112,12 @@ productosGamer.forEach((producto) => {
         </div>
         <div class="descripcion-producto">
             <div class="disponibilidad-producto">
-                <span>ENVIO RAPIDO</span>
-                <span>DISPONIBLE EN TIENDA</span>
+              <div class="tag-tipo-envio">
+                  <span>${producto.envio}</span>
+              </div>
+              <div class="tag-disponibilidad">
+                <span></span>
+              </div>
             </div>
             <div class="fabricante-producto">
                 <span>${producto.manufacturer}</span>
@@ -115,14 +129,10 @@ productosGamer.forEach((producto) => {
                 <p>${producto.category}</p>
             </div>
             <div class="precio-producto">
-                <p>${producto.price}</p>
-            </div>
-            <div class="stock-producto">
-                <p>${producto.stock}</p>
+                <p>$${producto.price}</p>
             </div>
         </div>
     </div>
   `;
-
   contenedor.appendChild(tarjeta);
 });
