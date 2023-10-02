@@ -96,14 +96,17 @@ let productosGamer = [
     manufacturer: "Logitech",
     price: 149.99,
     envio: "envio rapido",
-    stock: 0,
+    stock: 2,
     rutaImagen: "logitech-g-pro-x-superlight.webp",
   },
 ];
 
-renderizarProductos(productosGamer);
+let carrito = [];
 
-function renderizarProductos(productosGamer) {
+/* Carga de los productos en el sitio */
+renderizarProductos(productosGamer, carrito);
+
+function renderizarProductos(productosGamer, carrito) {
   let contenedor = document.getElementById("contenedorProductos");
   contenedor.innerHTML = "";
 
@@ -138,28 +141,109 @@ function renderizarProductos(productosGamer) {
                   <p>$${producto.price}</p>
               </div>
               <div class="btn-agregar">
-                  <span>Agregar al carro</span>
+                  <span id=${producto.id}>Agregar al carro</span>
               </div>
           </div>
       </div>
     `;
+
     if (producto.stock <= 0) {
       const tagDisponibilidad = tarjeta.querySelector(".tag-disponibilidad");
       tagDisponibilidad.style.display = "none";
     }
     contenedor.appendChild(tarjeta);
+
+    let botonAgregarAlCarrito = document.getElementById(producto.id);
+    botonAgregarAlCarrito.addEventListener("click", (e) =>
+      agregarProductoCarrito(productosGamer, carrito, e)
+    );
   });
 }
+/* FIN */
+
+/** Filtrar y mostrar la busqueda en Input **/
 
 let buscador = document.getElementById("buscador");
-// buscador.addEventListener("input", buscarValorInput);
 let botonBuscar = document.getElementById("buscar");
 
 botonBuscar.addEventListener("click", () => filtrarYRenderizar(productosGamer));
 
 function filtrarYRenderizar(productosGamer) {
+  let inputBusqueda = buscador.value.toUpperCase();
   let producutosFiltrados = productosGamer.filter((producto) =>
-    producto.nombre.includes(buscador.value)
+    producto.nombre.toUpperCase().includes(inputBusqueda)
   );
   renderizarProductos(producutosFiltrados);
+}
+
+/******************************************************************/
+function agregarProductoCarrito(productosGamer, carrito, e) {
+  let productoSolicitado = productosGamer.find(
+    (producto) => producto.id === Number(e.target.id)
+  );
+  let productoAgregado = carrito.find(
+    (producto) => producto.id === productoSolicitado.id
+  );
+
+  if (productoSolicitado.stock > 0) {
+    if (productoAgregado) {
+      productoAgregado.unidades++;
+      productoAgregado.subtotal =
+        productoAgregado.unidades * productoAgregado.precioUnitario;
+    } else {
+      carrito.push({
+        id: productoSolicitado.id,
+        imagen: productoSolicitado.rutaImagen,
+        nombre: productoSolicitado.nombre,
+        precioUnitario: productoSolicitado.price,
+        unidades: 1,
+        subtotal: productoSolicitado.price,
+      });
+    }
+    productoSolicitado.stock--;
+    alert("Producto agregado");
+  } else {
+    alert("Producto agotado 😔");
+  }
+  renderizarCarrito(carrito);
+}
+/* FIN */
+
+function renderizarCarrito(productosCarrito) {
+  let contenidoCarrito = document.getElementById("carrito");
+  contenidoCarrito.innerHTML = "";
+
+  productosCarrito.forEach((producto) => {
+    let itemProductoCarrito = document.createElement("div");
+    itemProductoCarrito.classList.add("contenedor-items-carrito");
+    itemProductoCarrito.innerHTML = `
+      <div class="imagen-producto-carrito">
+        <img src="assets/img/${producto.imagen}" alt="">
+        <div class="unidades-producto-carrito"
+          <p>Cantidad: <span>${producto.unidades}</span></p>
+        </div>
+      </div>
+      <div class="contenedor-info">
+        <div class="nombre-producto-carrito"
+          <span>${producto.nombre}</span>
+        </div>
+        <div class="precio-producto-carrito"
+          <p>Precio Unitario: <span>${producto.precioUnitario}</span></p>
+        </div>
+        
+        <div class="subtotal-producto-carrito"
+          <p>Subtotal: <span>${producto.subtotal}</span></p>
+        </div>
+      </div>
+    `;
+    contenidoCarrito.appendChild(itemProductoCarrito);
+  });
+}
+
+let mostrarCarrito = document.getElementById("showCarrito");
+mostrarCarrito.addEventListener("click", toggleCarrito);
+
+function toggleCarrito() {
+  let carrito = document.getElementById("carrito");
+  carrito.classList.toggle("ocultarCarrito");
 }

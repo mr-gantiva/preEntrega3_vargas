@@ -17,6 +17,60 @@
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: var(--bg-ppal) !important;
+  position: relative;
+}
+
+.contenedor-menu {
+  display: flex;
+}
+.contenedor-menu .contenedor-icono-carrito {
+  width: 50px;
+  height: auto;
+}
+.contenedor-menu .contenedor-icono-carrito ion-icon {
+  width: 50px;
+  height: 30px;
+}
+
+.contenedor-carrito {
+  width: 350px;
+  min-height: 400px;
+  background: var(--bg-cards);
+  border-radius: 4px;
+  padding: 20px;
+  position: absolute;
+}
+.contenedor-carrito .contenedor-items-carrito {
+  display: flex;
+  border-bottom: 1px solid #ededed;
+}
+.contenedor-carrito .contenedor-items-carrito span {
+  color: var(--color-primario);
+  font-weight: 600;
+}
+.contenedor-carrito .contenedor-items-carrito .imagen-producto-carrito {
+  width: 120px;
+  padding: 0 15px;
+}
+.contenedor-carrito .contenedor-items-carrito .imagen-producto-carrito img {
+  width: 100%;
+}
+.contenedor-carrito .contenedor-items-carrito .imagen-producto-carrito .unidades-producto-carrito {
+  color: var(--texto-verde);
+  display: flex;
+  justify-content: center;
+}
+.contenedor-carrito .contenedor-items-carrito .contenedor-info {
+  line-height: 1.2;
+  padding: 0 15px;
+}
+.contenedor-carrito .contenedor-items-carrito .nombre-producto-carrito {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.ocultarCarrito {
+  display: none;
 }
 
 .contenedor-productos {
