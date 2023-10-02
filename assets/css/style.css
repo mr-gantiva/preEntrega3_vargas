@@ -3,7 +3,7 @@
   --bg-cards: #ffffff;
   --texto-verde: #056152;
   --bg-verde: #ebfaf7;
-  --texto-purpura:#981b98;
+  --texto-purpura: #981b98;
   --bg-purpura: #fbe9fb;
   --color-primario: #441b98;
 }
@@ -85,11 +85,13 @@ body {
   text-transform: uppercase;
   font-weight: 700;
 }
-.contenedor-productos .fabricante-producto span, .contenedor-productos .fabricante-producto p, .contenedor-productos .titulo-producto span, .contenedor-productos .titulo-producto p, .contenedor-productos .categoria-producto span, .contenedor-productos .categoria-producto p {
+.contenedor-productos .fabricante-producto span,
+.contenedor-productos .fabricante-producto p,
+.contenedor-productos .titulo-producto span,
+.contenedor-productos .titulo-producto p,
+.contenedor-productos .categoria-producto span,
+.contenedor-productos .categoria-producto p {
   font-size: 0.871rem;
-}
-.contenedor-productos .precio-producto {
-  padding: 10px 0;
 }
 .contenedor-productos .precio-producto p {
   font-size: 1.148rem;
@@ -97,4 +99,24 @@ body {
   font-weight: 550;
   letter-spacing: 0;
   line-height: 125%;
+  margin-bottom: 2px;
+}
+.contenedor-productos .btn-agregar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+}
+.contenedor-productos .btn-agregar span {
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+  padding: 4px 14px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.contenedor-productos .btn-agregar span:hover {
+  background: var(--color-primario);
+  color: var(--bg-purpura);
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

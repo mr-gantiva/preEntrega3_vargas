@@ -96,43 +96,52 @@ let productosGamer = [
     manufacturer: "Logitech",
     price: 149.99,
     envio: "envio rapido",
-    stock: 2,
+    stock: 0,
     rutaImagen: "logitech-g-pro-x-superlight.webp",
   },
 ];
 
-let contenedor = document.getElementById("contenedorProductos");
+renderizarProductos(productosGamer);
 
-productosGamer.forEach((producto) => {
-  let tarjeta = document.createElement("div");
-  tarjeta.innerHTML = `
-  <div class="card-productos">
-        <div class="img-producto">
-            <img src="assets/img/${producto.rutaImagen}" alt="">
-        </div>
-        <div class="descripcion-producto">
-            <div class="disponibilidad-producto">
-              <div class="tag-tipo-envio">
-                  <span>${producto.envio}</span>
+function renderizarProductos(productosGamer) {
+  let contenedor = document.getElementById("contenedorProductos");
+
+  productosGamer.forEach((producto) => {
+    let tarjeta = document.createElement("div");
+    tarjeta.innerHTML = `
+    <div class="card-productos">
+          <div class="img-producto">
+              <img src="assets/img/${producto.rutaImagen}" alt="">
+          </div>
+          <div class="descripcion-producto">
+              <div class="disponibilidad-producto">
+                <div class="tag-tipo-envio">
+                    <span>${producto.envio}</span>
+                </div>
+                <div class="tag-disponibilidad">
+                  <span>${
+                    producto.stock > 0 ? "DISPONIBLE EN TIENDA" : ""
+                  }</span>
+                </div>
               </div>
-              <div class="tag-disponibilidad">
-                <span></span>
+              <div class="fabricante-producto">
+                  <span>${producto.manufacturer}</span>
               </div>
-            </div>
-            <div class="fabricante-producto">
-                <span>${producto.manufacturer}</span>
-            </div>
-            <div class="titulo-producto">
-                <span>${producto.nombre}</span>
-            </div>
-            <div class="categoria-producto">
-                <p>${producto.category}</p>
-            </div>
-            <div class="precio-producto">
-                <p>$${producto.price}</p>
-            </div>
-        </div>
-    </div>
-  `;
-  contenedor.appendChild(tarjeta);
-});
+              <div class="titulo-producto">
+                  <span>${producto.nombre}</span>
+              </div>
+              <div class="categoria-producto">
+                  <p>${producto.category}</p>
+              </div>
+              <div class="precio-producto">
+                  <p>$${producto.price}</p>
+              </div>
+              <div class="btn-agregar">
+                  <span>Agregar al carro</span>
+              </div>
+          </div>
+      </div>
+    `;
+    contenedor.appendChild(tarjeta);
+  });
+}
