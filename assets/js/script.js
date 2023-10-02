@@ -105,6 +105,7 @@ renderizarProductos(productosGamer);
 
 function renderizarProductos(productosGamer) {
   let contenedor = document.getElementById("contenedorProductos");
+  contenedor.innerHTML = "";
 
   productosGamer.forEach((producto) => {
     let tarjeta = document.createElement("div");
@@ -142,6 +143,23 @@ function renderizarProductos(productosGamer) {
           </div>
       </div>
     `;
+    if (producto.stock <= 0) {
+      const tagDisponibilidad = tarjeta.querySelector(".tag-disponibilidad");
+      tagDisponibilidad.style.display = "none";
+    }
     contenedor.appendChild(tarjeta);
   });
+}
+
+let buscador = document.getElementById("buscador");
+// buscador.addEventListener("input", buscarValorInput);
+let botonBuscar = document.getElementById("buscar");
+
+botonBuscar.addEventListener("click", () => filtrarYRenderizar(productosGamer));
+
+function filtrarYRenderizar(productosGamer) {
+  let producutosFiltrados = productosGamer.filter((producto) =>
+    producto.nombre.includes(buscador.value)
+  );
+  renderizarProductos(producutosFiltrados);
 }
