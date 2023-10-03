@@ -201,7 +201,11 @@ function agregarProductoCarrito(productosGamer, carrito, e) {
       });
     }
     productoSolicitado.stock--;
-    alert("Producto agregado");
+    lanzarTostada(
+      `${productoSolicitado.nombre} agregado ✅`,
+      "bottom",
+      "right"
+    );
   } else {
     alert("Producto agotado 😔");
   }
@@ -246,4 +250,16 @@ mostrarCarrito.addEventListener("click", toggleCarrito);
 function toggleCarrito() {
   let carrito = document.getElementById("carrito");
   carrito.classList.toggle("ocultarCarrito");
+}
+
+function lanzarTostada(text, gravity, position) {
+  Toastify({
+    text,
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #441b98, #fbe9fb)",
+    },
+    gravity,
+    position,
+  }).showToast();
 }
