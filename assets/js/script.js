@@ -103,6 +103,13 @@ let productosGamer = [
 
 let carrito = [];
 
+let carritoRecuperado = localStorage.getItem("carrito");
+if (carritoRecuperado) {
+  carrito = JSON.parse(carritoRecuperado);
+}
+
+renderizarCarrito(carrito);
+
 /* Carga de los productos en el sitio */
 renderizarProductos(productosGamer, carrito);
 
@@ -201,6 +208,7 @@ function agregarProductoCarrito(productosGamer, carrito, e) {
       });
     }
     productoSolicitado.stock--;
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     lanzarTostada(
       `${productoSolicitado.nombre} agregado ✅`,
       "bottom",
@@ -214,34 +222,47 @@ function agregarProductoCarrito(productosGamer, carrito, e) {
 /* FIN */
 
 function renderizarCarrito(productosCarrito) {
-  let contenidoCarrito = document.getElementById("carrito");
-  contenidoCarrito.innerHTML = "";
+  if (productosCarrito.length > 0) {
+    let contenidoCarrito = document.getElementById("carrito");
+    contenidoCarrito.innerHTML = "";
 
-  productosCarrito.forEach((producto) => {
-    let itemProductoCarrito = document.createElement("div");
-    itemProductoCarrito.classList.add("contenedor-items-carrito");
-    itemProductoCarrito.innerHTML = `
-      <div class="imagen-producto-carrito">
-        <img src="assets/img/${producto.imagen}" alt="">
-        <div class="unidades-producto-carrito"
-          <p>Cantidad: <span>${producto.unidades}</span></p>
+    productosCarrito.forEach((producto) => {
+      let itemProductoCarrito = document.createElement("div");
+      itemProductoCarrito.classList.add("contenedor-items-carrito");
+      itemProductoCarrito.innerHTML = `
+        <div class="imagen-producto-carrito">
+          <img src="assets/img/${producto.imagen}" alt="">
+          <div class="unidades-producto-carrito"
+            <p>Cantidad: <span>${producto.unidades}</span></p>
+          </div>
         </div>
-      </div>
-      <div class="contenedor-info">
-        <div class="nombre-producto-carrito"
-          <span>${producto.nombre}</span>
+        <div class="contenedor-info">
+          <div class="nombre-producto-carrito"
+            <span>${producto.nombre}</span>
+          </div>
+          <div class="precio-producto-carrito"
+            <p>Precio Unitario: <span>${producto.precioUnitario}</span></p>
+          </div>
+          
+          <div class="subtotal-producto-carrito"
+            <p>Subtotal: <span>${producto.subtotal}</span></p>
+          </div>
         </div>
-        <div class="precio-producto-carrito"
-          <p>Precio Unitario: <span>${producto.precioUnitario}</span></p>
-        </div>
-        
-        <div class="subtotal-producto-carrito"
-          <p>Subtotal: <span>${producto.subtotal}</span></p>
-        </div>
-      </div>
-    `;
-    contenidoCarrito.appendChild(itemProductoCarrito);
-  });
+      `;
+      contenidoCarrito.appendChild(itemProductoCarrito);
+    });
+
+    let btnFinalzarCompra = document.createElement("button");
+    btnFinalzarCompra.innerHTML = "Finalizar compra";
+    btnFinalzarCompra.addEventListener("click", finalizarCompra);
+    contenidoCarrito.appendChild(btnFinalzarCompra);
+  }
+}
+
+function finalizarCompra() {
+  let carrito = document.getElementById("carrito");
+  carrito.innerHTML = "";
+  localStorage.removeItem("carrito");
 }
 
 let mostrarCarrito = document.getElementById("showCarrito");

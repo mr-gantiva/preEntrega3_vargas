@@ -39,6 +39,7 @@ body {
   border-radius: 4px;
   padding: 20px;
   position: absolute;
+  z-index: 1000;
 }
 .contenedor-carrito .contenedor-items-carrito {
   display: flex;

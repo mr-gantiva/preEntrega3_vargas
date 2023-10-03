@@ -39,6 +39,7 @@ body {
   border-radius: 4px;
   padding: 20px;
   position: absolute;
+  z-index: 1000;
   .contenedor-items-carrito {
     display: flex;
     border-bottom: 1px solid #ededed;
