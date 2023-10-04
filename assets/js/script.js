@@ -180,7 +180,7 @@ function filtrarYRenderizar(productosGamer) {
   let producutosFiltrados = productosGamer.filter((producto) =>
     producto.nombre.toUpperCase().includes(inputBusqueda)
   );
-  renderizarProductos(producutosFiltrados);
+  renderizarProductos(producutosFiltrados, carrito);
 }
 
 /******************************************************************/
@@ -230,27 +230,37 @@ function renderizarCarrito(productosCarrito) {
       let itemProductoCarrito = document.createElement("div");
       itemProductoCarrito.classList.add("contenedor-items-carrito");
       itemProductoCarrito.innerHTML = `
-        <div class="imagen-producto-carrito">
-          <img src="assets/img/${producto.imagen}" alt="">
-          <div class="unidades-producto-carrito"
-            <p>Cantidad: <span>${producto.unidades}</span></p>
+        <div class="box-carrito">
+          <div class="imagen-producto-carrito">
+            <img src="assets/img/${producto.imagen}" alt="">
+            <div class="nombre-producto-carrito"
+              <span>${producto.nombre}</span>
+            </div>
           </div>
-        </div>
-        <div class="contenedor-info">
-          <div class="nombre-producto-carrito"
-            <span>${producto.nombre}</span>
-          </div>
-          <div class="precio-producto-carrito"
-            <p>Precio Unitario: <span>${producto.precioUnitario}</span></p>
-          </div>
-          
-          <div class="subtotal-producto-carrito"
-            <p>Subtotal: <span>${producto.subtotal}</span></p>
+          <div class="contenedor-info">
+            <div class="precio-producto-carrito"
+              <p>Unidad: <span>$${producto.precioUnitario}</span></p>
+            </div>
+            <div class="unidades-producto-carrito"
+              <p>Cant: <span> ${producto.unidades}</span></p>
+            </div>
+            <div class="subtotal-producto-carrito"
+              <p>Subtotal: <span>$${producto.subtotal}</span></p>
+            </div>
           </div>
         </div>
       `;
       contenidoCarrito.appendChild(itemProductoCarrito);
     });
+
+    let sumaSubtotales = calcularSumaSubtotales(productosCarrito);
+
+    let totalElement = document.createElement("div");
+    totalElement.classList.add("contenedor-total-compra");
+    totalElement.id = "totalElement";
+    totalElement.textContent = `Total: $${sumaSubtotales.toFixed(2)}`;
+
+    contenidoCarrito.appendChild(totalElement);
 
     let btnFinalzarCompra = document.createElement("button");
     btnFinalzarCompra.innerHTML = "Finalizar compra";
@@ -259,10 +269,27 @@ function renderizarCarrito(productosCarrito) {
   }
 }
 
+function calcularSumaSubtotales(productosCarrito) {
+  let sumaSubtotales = 0;
+  productosCarrito.forEach((producto) => {
+    sumaSubtotales += producto.subtotal;
+  });
+  return sumaSubtotales;
+}
+
+function mostrarTotal(total) {
+  let totalElement = document.getElementById("totalElement"); // Cambia el ID según tu estructura HTML
+  totalElement.textContent = `$${total.toFixed(2)}`;
+}
+
 function finalizarCompra() {
   let carrito = document.getElementById("carrito");
   carrito.innerHTML = "";
   localStorage.removeItem("carrito");
+  agregarAlerta("center", "success", "Tu compra ha sido exitosa!", false, 1500);
+  setTimeout(() => {
+    window.location.reload();
+  }, 1500);
 }
 
 let mostrarCarrito = document.getElementById("showCarrito");
@@ -273,7 +300,7 @@ function toggleCarrito() {
   carrito.classList.toggle("ocultarCarrito");
 }
 
-function lanzarTostada(text, gravity, position) {
+function lanzarTostada(text, gravity, position, estilo) {
   Toastify({
     text,
     className: "info",
@@ -283,4 +310,14 @@ function lanzarTostada(text, gravity, position) {
     gravity,
     position,
   }).showToast();
+}
+
+function agregarAlerta(position, icon, title, showConfirmButton, timer) {
+  Swal.fire({
+    position,
+    icon,
+    title,
+    showConfirmButton,
+    timer,
+  });
 }
