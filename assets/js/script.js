@@ -2,7 +2,7 @@ let productosGamer = [
   {
     id: 1,
     nombre: "Logitech G502",
-    category: "Gaming Mouse",
+    category: "Mouse Gamer",
     manufacturer: "Logitech",
     price: 49.99,
     envio: "envio rapido",
@@ -12,7 +12,7 @@ let productosGamer = [
   {
     id: 2,
     nombre: "Razer BlackWidow Elite",
-    category: "Gaming Keyboard",
+    category: "Teclados Gamer",
     manufacturer: "Razer",
     price: 169.99,
     envio: "envio rapido",
@@ -22,7 +22,7 @@ let productosGamer = [
   {
     id: 3,
     nombre: "SteelSeries Arctis Pro",
-    category: "Gaming Headset",
+    category: "Audifonos Gamer",
     manufacturer: "SteelSeries",
     price: 179.99,
     envio: "envio rapido",
@@ -32,7 +32,7 @@ let productosGamer = [
   {
     id: 4,
     nombre: "ASUS ROG Strix GeForce RTX 3080",
-    category: "Graphics Card",
+    category: "Tarjetas Graficas",
     manufacturer: "ASUS",
     price: 699.99,
     envio: "envio rapido",
@@ -42,7 +42,7 @@ let productosGamer = [
   {
     id: 5,
     nombre: "HyperX Alloy Origins",
-    category: "Gaming Keyboard",
+    category: "Teclados Gamer",
     manufacturer: "HyperX",
     price: 109.99,
     envio: "envio rapido",
@@ -52,7 +52,7 @@ let productosGamer = [
   {
     id: 6,
     nombre: "Corsair K70 RGB MK.2",
-    category: "Gaming Keyboard",
+    category: "Teclados Gamer",
     manufacturer: "Corsair",
     price: 159.99,
     envio: "envio rapido",
@@ -62,7 +62,7 @@ let productosGamer = [
   {
     id: 7,
     nombre: "LG 27GL850-B",
-    category: "Gaming Monitor",
+    category: "Monitor Gamer",
     manufacturer: "LG",
     price: 499.99,
     envio: "envio rapido",
@@ -72,7 +72,7 @@ let productosGamer = [
   {
     id: 8,
     nombre: "Sony PlayStation 5",
-    category: "Gaming Console",
+    category: "Consolas",
     manufacturer: "Sony",
     price: 499.99,
     envio: "envio rapido",
@@ -82,7 +82,7 @@ let productosGamer = [
   {
     id: 9,
     nombre: "Microsoft Xbox Series X",
-    category: "Gaming Console",
+    category: "Consolas",
     manufacturer: "Microsoft",
     price: 499.99,
     envio: "envio rapido",
@@ -92,7 +92,7 @@ let productosGamer = [
   {
     id: 10,
     nombre: "Logitech G Pro X Superlight",
-    category: "Gaming Mouse",
+    category: "Mouse Gamer",
     manufacturer: "Logitech",
     price: 149.99,
     envio: "envio rapido",
@@ -102,6 +102,7 @@ let productosGamer = [
 ];
 
 let carrito = [];
+actualizarContadorCarrito(carrito);
 
 let carritoRecuperado = localStorage.getItem("carrito");
 if (carritoRecuperado) {
@@ -183,6 +184,24 @@ function filtrarYRenderizar(productosGamer) {
   renderizarProductos(producutosFiltrados, carrito);
 }
 
+function filtrarporCategoria(category) {
+  let producutosFiltrados = productosGamer.filter(
+    (producto) => producto.category === category
+  );
+
+  renderizarProductos(producutosFiltrados, carrito);
+}
+
+let btnsCategoria = document.querySelectorAll(".btn-category");
+
+btnsCategoria.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    let category = btn.getAttribute("data-category");
+
+    filtrarporCategoria(category);
+  });
+});
+
 /******************************************************************/
 function agregarProductoCarrito(productosGamer, carrito, e) {
   let productoSolicitado = productosGamer.find(
@@ -218,34 +237,54 @@ function agregarProductoCarrito(productosGamer, carrito, e) {
     alert("Producto agotado 😔");
   }
   renderizarCarrito(carrito);
+  actualizarContadorCarrito(carrito);
 }
 /* FIN */
+
+function actualizarContadorCarrito(carrito) {
+  let contadorCarrito = document.getElementById("contadorCarrito");
+  if (contadorCarrito) {
+    contadorCarrito.textContent = carrito.reduce(
+      (total, producto) => total + producto.unidades,
+      0
+    );
+  }
+}
 
 function renderizarCarrito(productosCarrito) {
   if (productosCarrito.length > 0) {
     let contenidoCarrito = document.getElementById("carrito");
     contenidoCarrito.innerHTML = "";
 
+    let boxResumen = document.createElement("div");
+    boxResumen.classList.add("box-resumen");
+    boxResumen.innerHTML = `
+      <span>Resumen</span>
+    `;
+    contenidoCarrito.appendChild(boxResumen);
+
     productosCarrito.forEach((producto) => {
       let itemProductoCarrito = document.createElement("div");
       itemProductoCarrito.classList.add("contenedor-items-carrito");
       itemProductoCarrito.innerHTML = `
+        <div class="contenedor-nombre">
+          <div class="nombre-producto-carrito"
+            <span>${producto.nombre}</span>
+          </div>
+        </div>
         <div class="box-carrito">
           <div class="imagen-producto-carrito">
             <img src="assets/img/${producto.imagen}" alt="">
-            <div class="nombre-producto-carrito"
-              <span>${producto.nombre}</span>
-            </div>
           </div>
           <div class="contenedor-info">
             <div class="precio-producto-carrito"
-              <p>Unidad: <span>$${producto.precioUnitario}</span></p>
+              <p class="texto-info">Unidad: <span>$${producto.precioUnitario}</span></p>
             </div>
             <div class="unidades-producto-carrito"
-              <p>Cant: <span> ${producto.unidades}</span></p>
+              <p class="texto-info">Cant: <span> ${producto.unidades}</span></p>
             </div>
             <div class="subtotal-producto-carrito"
-              <p>Subtotal: <span>$${producto.subtotal}</span></p>
+              <p class="texto-info">Subtotal: <span>$${producto.subtotal}</span></p>
             </div>
           </div>
         </div>
