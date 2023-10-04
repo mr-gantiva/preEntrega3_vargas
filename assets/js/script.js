@@ -334,9 +334,24 @@ function finalizarCompra() {
 let mostrarCarrito = document.getElementById("showCarrito");
 mostrarCarrito.addEventListener("click", toggleCarrito);
 
+let cierreCarrito = document.getElementById("cierreCarrito");
+cierreCarrito.addEventListener("click", toggleCarrito);
+
 function toggleCarrito() {
   let carrito = document.getElementById("carrito");
   carrito.classList.toggle("ocultarCarrito");
+}
+
+let mostrarBurgerMenu = document.getElementById("mostrarBurgerMenu");
+mostrarBurgerMenu.addEventListener("click", toggleBurgerMenu);
+
+let cierreBurgerMenu = document.getElementById("cerrarMenuBurger");
+cierreBurgerMenu.addEventListener("click", toggleBurgerMenu);
+
+function toggleBurgerMenu() {
+  let cierreBurgerMenu = document.getElementById("burgerMenu");
+  cierreBurgerMenu.classList.toggle("ocultarCarrito");
+  cierreBurgerMenu.classList.toggle("contenedor-burger-menu");
 }
 
 function lanzarTostada(text, gravity, position, estilo) {
