@@ -57,7 +57,7 @@ let productosGamer = [
     price: 159.99,
     envio: "envio rapido",
     stock: 2,
-    rutaImagen: "corsair-K70-rgb-mk-2.webp",
+    rutaImagen: "corsair-k70-rgb-mk-2.webp",
   },
   {
     id: 7,
