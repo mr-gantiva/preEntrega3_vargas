@@ -34,6 +34,13 @@ body {
 .contenedor-menu .logo-tienda {
   color: var(--bg-cards);
 }
+.contenedor-menu .logo-tienda a {
+  text-decoration: none;
+  color: var(--bg-cards);
+}
+.contenedor-menu .logo-tienda a:hover {
+  transform: scale(5);
+}
 .contenedor-menu .contenedor-buscador {
   width: 40%;
   display: flex;
@@ -233,6 +240,10 @@ body {
   display: none;
 }
 
+.contenedor-banner img {
+  width: 100%;
+}
+
 .contenedor-productos {
   display: flex;
   justify-content: center;
@@ -335,6 +346,45 @@ body {
   cursor: pointer;
 }
 
+.footer {
+  background: var(--color-primario);
+}
+.footer .contenedor-footer {
+  display: flex;
+}
+.footer .contenedor-footer .footer-info {
+  width: 100%;
+  color: var(--bg-cards);
+}
+.footer .contenedor-footer a {
+  text-decoration: none;
+  color: var(--bg-cards);
+  cursor: pointer;
+}
+.footer .contenedor-footer li {
+  list-style: none;
+}
+.footer .contenedor-footer ion-icon {
+  color: var(--bg-cards);
+}
+.footer .redes-info {
+  display: flex;
+  justify-content: center;
+}
+.footer .box-footer-redes {
+  display: flex;
+  gap: 20px;
+}
+.footer .box-footer-redes ion-icon {
+  font-size: 2rem;
+  color: var(--bg-cards);
+}
+.footer .box-footer-redes ion-icon:hover {
+  color: var(--bg-purpura);
+  transform: translateY(-5px);
+  transition: all 0.2s ease-in-out;
+}
+
 @media (300px <= width <= 481px) {
   .contenedor-menu {
     flex-direction: column;
@@ -393,6 +443,10 @@ body {
   .contenedor-burger-menu .box-burger-menu .box-header-burger-menu ion-icon {
     color: var(--bg-cards);
     font-size: 2em;
+  }
+  .contenedor-burger-menu .box-burger-menu .box-categorias {
+    width: 80%;
+    margin-top: 30px;
   }
   .contenedor-burger-menu .box-burger-menu .box-categorias ul {
     display: flex;

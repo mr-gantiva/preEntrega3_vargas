@@ -32,6 +32,13 @@ body {
   }
   .logo-tienda {
     color: var(--bg-cards);
+    a {
+      text-decoration: none;
+      color: var(--bg-cards);
+      &:hover {
+        transform: scale(5);
+      }
+    }
   }
   .contenedor-buscador {
     width: 40%;
@@ -235,6 +242,12 @@ body {
   display: none;
 }
 
+.contenedor-banner {
+  img {
+    width: 100%;
+  }
+}
+
 .contenedor-productos {
   display: flex;
   justify-content: center;
@@ -339,6 +352,45 @@ body {
   }
 }
 
+.footer {
+  background: var(--color-primario);
+  .contenedor-footer {
+    display: flex;
+    .footer-info{
+      width: 100%;
+      color: var(--bg-cards);
+    }
+    a {
+      text-decoration: none;
+      color: var(--bg-cards);
+      cursor: pointer;
+    }
+    li {
+      list-style: none;
+    }
+    ion-icon {
+      color: var(--bg-cards);
+    }
+  }
+  .redes-info {
+    display: flex;
+    justify-content: center;
+  }
+  .box-footer-redes {
+    display: flex;
+    gap: 20px;
+    ion-icon {
+      font-size: 2rem;
+      color: var(--bg-cards);
+      &:hover {
+        color: var(--bg-purpura);
+        transform: translateY(-5px);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+}
+
 
 @media (300px <= width <= 481px) {
   .contenedor-menu {
@@ -402,6 +454,8 @@ body {
         }
       }
       .box-categorias {
+        width: 80%;
+        margin-top: 30px;
         ul {
           display: flex;
           flex-direction: column;

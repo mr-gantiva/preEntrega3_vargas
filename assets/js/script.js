@@ -234,7 +234,13 @@ function agregarProductoCarrito(productosGamer, carrito, e) {
       "right"
     );
   } else {
-    alert("Producto agotado 😔");
+    agregarAlerta(
+      "top-end",
+      "info",
+      "El producto esta agotado 😞",
+      false,
+      1500
+    );
   }
   renderizarCarrito(carrito);
   actualizarContadorCarrito(carrito);
